@@ -10,8 +10,8 @@ package:
 source:
   fn: lmerTest_{{ version }}.tar.gz
   url:
-    - https://cran.r-project.org/src/contrib/lmerTest_{{ version }}.tar.gz
-    - https://cran.r-project.org/src/contrib/Archive/lmerTest/lmerTest_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/lmerTest_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/lmerTest/lmerTest_{{ version }}.tar.gz
   sha256: 178717ce9dbfa54d11f0ed320759ddd231b9c7cce4d9cf712faa3757883745c9
 
 
