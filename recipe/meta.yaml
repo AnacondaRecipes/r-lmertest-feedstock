@@ -1,4 +1,4 @@
-{% set version = '2.0-36' %}
+{% set version = '3.0-0' %}
 
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
@@ -12,45 +12,35 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/lmerTest_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/lmerTest/lmerTest_{{ version }}.tar.gz
-  sha256: 178717ce9dbfa54d11f0ed320759ddd231b9c7cce4d9cf712faa3757883745c9
-
-
-  # patches:
-   # List any patch files here
-   # - fix.patch
+  sha256: 5b94cc9ec0c10dd79d8a282a085bef71b81c7d1ae3ae47dc46902dd97dfbc622
 
 build:
   merge_build_host: True  # [win]
   # If this is a new build for the same version, increment the build number.
   number: 0
 
-
   # This is required to make R link correctly on Linux.
   rpaths:
     - lib/R/lib/
     - lib/
 
-# Suggests: pbkrtest, nlme, estimability
+# Suggests: pbkrtest, tools
 requirements:
   build:
 
   host:
     - r-base
-    - r-hmisc
     - r-mass
-    - r-matrix
     - r-ggplot2
     - r-lme4 >=1.0
-    - r-plyr
+    - r-numderiv
 
   run:
     - r-base
-    - r-hmisc
     - r-mass
-    - r-matrix
     - r-ggplot2
     - r-lme4 >=1.0
-    - r-plyr
+    - r-numderiv
 
 test:
   commands:
@@ -65,13 +55,13 @@ test:
     # Put any additional test requirements here.
 
 about:
-  home: https://CRAN.R-project.org/package=lmerTest
+  home: https://github.com/runehaubo/lmerTestR
   license: GPL (>= 2)
-  summary: Different kinds of tests for linear mixed effects models as implemented in 'lme4'
-    package are provided. The tests comprise types I - III F tests for fixed effects,
-    LR tests for random effects. The package also provides the calculation of population
-    means for fixed factors with confidence intervals  and corresponding plots. Finally
-    the backward elimination of non-significant effects is implemented.
+  summary: Provides p-values in type I, II or III anova and summary tables for lmer model fits
+    (cf. lme4) via Satterthwaite's degrees of  freedom method. A Kenward-Roger method
+    is also available via the pbkrtest package. Model selection methods include step,
+    drop1 and anova-like  tables for random effects (ranova). Methods for Least-Square
+    means (LS-means)  and tests of linear contrasts of fixed effects are also available.
   license_family: GPL3
 
 extra:
@@ -85,20 +75,25 @@ extra:
 # Package: lmerTest
 # Type: Package
 # Title: Tests in Linear Mixed Effects Models
-# Version: 2.0-36
+# Version: 3.0-0
 # Authors@R: c(person("Alexandra", "Kuznetsova", role = c("aut")), person("Per", "Bruun Brockhoff", role = c("aut", "ths", "cre"), email = "perbb@dtu.dk"), person("Rune", "Haubo Bojesen Christensen", role =  c("aut"), email = "Rune@ChristensenStatistics.dk"))
-# Depends: R (>= 3.0.0), Matrix, stats, methods, lme4 (>= 1.0)
-# Imports: plyr, MASS, Hmisc, ggplot2
-# Suggests: pbkrtest, nlme, estimability
-# Description: Different kinds of tests for linear mixed effects models as implemented in 'lme4' package are provided. The tests comprise types I - III F tests for fixed effects, LR tests for random effects. The package also provides the calculation of population means for fixed factors with confidence intervals  and corresponding plots. Finally the backward elimination of non-significant effects is implemented.
-# LazyData: TRUE
+# Depends: lme4 (>= 1.0), stats, methods
+# Imports: numDeriv, MASS, ggplot2
+# Suggests: pbkrtest, tools
+# Description: Provides p-values in type I, II or III anova and summary tables for lmer model fits (cf. lme4) via Satterthwaite's degrees of  freedom method. A Kenward-Roger method is also available via the pbkrtest package. Model selection methods include step, drop1 and anova-like  tables for random effects (ranova). Methods for Least-Square means (LS-means)  and tests of linear contrasts of fixed effects are also available.
 # License: GPL (>= 2)
+# Encoding: UTF-8
+# LazyData: true
+# URL: https://github.com/runehaubo/lmerTestR
+# BugReports: https://github.com/runehaubo/lmerTestR/issues
+# RoxygenNote: 6.0.1
+# Collate: 'anova_contrasts.R' 'contest.R' 'contrast_utils.R' 'data_documentation.R' 'drop1.R' 'estimability.R' 'lmer.R' 'lmerTest.R' 'lmer_anova.R' 'lmer_summary.R' 'ls_means.R' 'ranova.R' 'step.R' 'terms_utils.R' 'utils.R'
 # NeedsCompilation: no
-# Packaged: 2017-11-29 20:49:20 UTC; rhbc
+# Packaged: 2018-04-16 12:40:44 UTC; rhbc
 # Author: Alexandra Kuznetsova [aut], Per Bruun Brockhoff [aut, ths, cre], Rune Haubo Bojesen Christensen [aut]
 # Maintainer: Per Bruun Brockhoff <perbb@dtu.dk>
 # Repository: CRAN
-# Date/Publication: 2017-11-30 13:00:11 UTC
+# Date/Publication: 2018-04-16 19:57:22 UTC
 
 # See
 # http://docs.continuum.io/conda/build.html for
