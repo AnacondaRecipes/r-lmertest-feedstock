@@ -1,4 +1,4 @@
-{% set version = '3.0-1' %}
+{% set version = '3.1-0' %}
 
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
@@ -11,12 +11,13 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/lmerTest_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/lmerTest/lmerTest_{{ version }}.tar.gz
-  sha256: 95e07c9e1b231ac14c379324570c5a387e1a6348aee51b673dc32ec474322a5e
+  sha256: 2bdd4e8c1b9f88653dd39e5ee919878bb45bac857515130946cb17d52b437fda
 
 build:
   merge_build_host: True  # [win]
   # If this is a new build for the same version, increment the build number.
   number: 0
+  noarch: generic
 
   # This is required to make R link correctly on Linux.
   rpaths:
@@ -63,6 +64,7 @@ about:
     drop1 and anova-like tables for random effects (ranova). Methods for Least-Square
     means (LS-means) and tests of linear contrasts of fixed effects are also available.
   license_family: GPL3
+  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2'
 
 extra:
   recipe-maintainers:
@@ -75,7 +77,7 @@ extra:
 # Package: lmerTest
 # Type: Package
 # Title: Tests in Linear Mixed Effects Models
-# Version: 3.0-1
+# Version: 3.1-0
 # Authors@R: c(person("Alexandra", "Kuznetsova", role = c("aut")), person("Per", "Bruun Brockhoff", role = c("aut", "ths", "cre"), email = "perbb@dtu.dk"), person("Rune", "Haubo Bojesen Christensen", role =  c("aut"), email = "Rune@ChristensenStatistics.dk"))
 # Depends: R (>= 3.2.5), lme4 (>= 1.1-10), stats, methods
 # Imports: numDeriv, MASS, ggplot2
@@ -86,14 +88,14 @@ extra:
 # LazyData: true
 # URL: https://github.com/runehaubo/lmerTestR
 # BugReports: https://github.com/runehaubo/lmerTestR/issues
-# RoxygenNote: 6.0.1
-# Collate: 'anova_contrasts.R' 'contest.R' 'contrast_utils.R' 'data_documentation.R' 'drop1.R' 'estimability.R' 'lmer.R' 'lmerTest.R' 'lmer_anova.R' 'lmer_summary.R' 'ls_means.R' 'ranova.R' 'step.R' 'terms_utils.R' 'utils.R'
+# RoxygenNote: 6.1.1
+# Collate: 'anova_contrasts.R' 'contest.R' 'contrast_utils.R' 'data_documentation.R' 'drop1.R' 'estimability.R' 'legacy.R' 'lmer.R' 'lmerTest.R' 'lmer_anova.R' 'lmer_summary.R' 'ls_means.R' 'ranova.R' 'step.R' 'terms_utils.R' 'utils.R'
 # NeedsCompilation: no
-# Packaged: 2018-04-23 06:08:01 UTC; rhbc
+# Packaged: 2019-02-06 17:26:37 UTC; rhbc
 # Author: Alexandra Kuznetsova [aut], Per Bruun Brockhoff [aut, ths, cre], Rune Haubo Bojesen Christensen [aut]
 # Maintainer: Per Bruun Brockhoff <perbb@dtu.dk>
 # Repository: CRAN
-# Date/Publication: 2018-04-23 22:33:22 UTC
+# Date/Publication: 2019-02-11 08:50:13 UTC
 
 # See
 # http://docs.continuum.io/conda/build.html for
